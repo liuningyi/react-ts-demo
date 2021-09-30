@@ -1,11 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Table from './components/table/Table';
+// import React from 'react';
+import './App.less';
+// import Table from './components/table/Table';
+import TodoList from './todolist';
 function App() {
   return (
     <div className="App">
-      <Table></Table>
+      {/* <Table></Table> */}
+      <TodoList></TodoList>
     </div>
   );
 }
