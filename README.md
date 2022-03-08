@@ -1,2 +1,3 @@
-# react-ts-demo
-一个用于学习react+ts的代码仓库
+#project-init
+
+# drawio 文件夹暂时用来存放一些逻辑图
