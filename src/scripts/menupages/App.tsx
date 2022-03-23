@@ -3,27 +3,46 @@ import React, { useState } from 'react';
 import zhCN from 'antd/lib/locale/zh_CN';
 import Sider from 'antd/lib/layout/Sider';
 import { Content, Footer, Header } from 'antd/lib/layout/layout';
+import "./App.less";
 
-import "./App.less"
+import SideMenu from './AppComponents/SideMenu';
+import MainTabs from './AppComponents/MainTabs';
+
+
 
 /**
  * ConfigProvider 给组件提供统一的全局化配置，context特性
 */
 
+
 const CustomLayout = () => {
-  const [collapsed,setCollapsed] = useState(false);
-  const onCollapse=(collapsed:boolean)=>{
-    console.log(collapsed )
-    setCollapsed(collapsed )
+  const [collapsed, setCollapsed] = useState(false);
+  const [activeKey,setActiveKey] = useState("key1");
+
+  console.log(setActiveKey)
+
+  const onCollapse = (collapsed: boolean) => {
+    setCollapsed(collapsed)
   }
+
+  const changeActivePage=(key:string)=>{
+    setActiveKey(key);
+  }
+
+
   return (
-    <Layout style={{minHeight:'100vh',display:'flex',flexDirection:"row"}}>
-      <Sider collapsible  collapsed={collapsed} onCollapse={onCollapse}>左侧栏</Sider>
+    <Layout className='container-layout'>
+      <Sider className='left-sider'
+        collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <SideMenu activeKey={activeKey} change={changeActivePage}/>
+      </Sider>
       <Layout>
         <Header>头部信息</Header>
-        <Content>内容</Content>
+        <Content>
+          <MainTabs activeKey={activeKey} change={changeActivePage}/>
+        </Content>
         <Footer>
-          <div>copyright</div>
+          <div className="footer">Copyright@2022 柳宁依出品</div>
         </Footer>
       </Layout>
     </Layout>
