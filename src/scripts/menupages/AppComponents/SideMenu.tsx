@@ -1,15 +1,18 @@
 import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import React, { useState } from "react";
-import { MailOutlined, SettingOutlined } from '@ant-design/icons';
+// import { MailOutlined, SettingOutlined } from '@ant-design/icons';
+
+import { IMenu } from "../App";
 
 interface ISideMenu {
     activeKey: string;
+    menuList: IMenu[];
     change(key: string): void
 }
 
 const SideMenu = (props: ISideMenu) => {
-    const { activeKey } = props;
+    const { activeKey, menuList } = props;
     const [openKeys, setOpenKeys] = useState(["sub1"]);
 
     const handleClickMenu = (e: any) => {
@@ -25,13 +28,32 @@ const SideMenu = (props: ISideMenu) => {
             onClick={handleClickMenu} onOpenChange={handleOpenChange}
             selectedKeys={[activeKey]} openKeys={openKeys}
         >
-            <Menu.Item key="key1">页面1</Menu.Item>
+            {/* <Menu.Item key="key1">页面1</Menu.Item>
             <SubMenu title="父菜单一" key="sub1" icon={<MailOutlined />}>
                 <Menu.Item key="key2">页面2</Menu.Item>
             </SubMenu>
             <SubMenu title="父菜单二" key="sub2" icon={<SettingOutlined />}>
                 <Menu.Item key="key3">页面3</Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
+
+            {
+                menuList.map((menu: IMenu) => {
+                    if (menu.children) {
+                        return (
+                            <SubMenu title={menu.text} key={menu.key} icon={menu.icon}>
+                                {
+                                    // 暂时层级菜单只支持一层
+                                    menu.children.map((m: IMenu) => {
+                                        return <Menu.Item key={m.key}>{m.text}</Menu.Item>
+                                    })
+                                }
+                            </SubMenu>
+                        )
+                    } else {
+                        return <Menu.Item key={menu.key}>{menu.text}</Menu.Item>
+                    }
+                })
+            }
         </Menu>
     )
 }
