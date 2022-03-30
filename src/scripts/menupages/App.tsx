@@ -14,7 +14,7 @@ import Page1 from 'scripts/pages/page1';
 import Page2 from 'scripts/pages/page2';
 import Page3 from 'scripts/pages/page3';
 import { IMenu, IPane, ITabEditParams, TabEditAction } from './types';
-import { addTabsPane, removeTabsPane } from './App.logic';
+import { addTabsPane, getTargetPane, removeTabsPane } from './App.logic';
 
 const menuList: IMenu[] = [
   {
@@ -47,17 +47,22 @@ const menuList: IMenu[] = [
 */
 
 const CustomLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
   const [activeKey, setActiveKey] = useState("key1");
   const [tabPanes, setTabPanes] = useState<IPane[]>([{ key: "key1", title: "页面1", page: Page1 }])
   console.log(setTabPanes)
 
-  const onCollapse = (collapsed: boolean) => {
-    setCollapsed(collapsed)
-  }
+  // const onCollapse = (collapsed: boolean) => {
+  //   setCollapsed(collapsed)
+  // }
 
   const changeActivePage = (key: string) => {
     setActiveKey(key);
+
+    const existPane=tabPanes.find((p:IPane)=>p.key===key);
+    if(!existPane){
+       setTabPanes([...tabPanes,getTargetPane(menuList,key)]);
+    }
   }
 
   const handleEditTabs = (action: TabEditAction, params: ITabEditParams) => {
@@ -75,8 +80,7 @@ const CustomLayout = () => {
 
   return (
     <Layout className='container-layout'>
-      <Sider className='left-sider'
-        collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <Sider className='left-sider'>
         <SideMenu activeKey={activeKey} change={changeActivePage}
           menuList={menuList} />
       </Sider>
