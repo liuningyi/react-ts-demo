@@ -58,6 +58,12 @@ const config = {
           },
           {
             loader: "css-loader",
+            options:{
+              modules:{
+                auto:/\.module\.less$/i,
+                namedExport:true
+              }
+            }
           },
           {
             loader: "less-loader",
@@ -69,6 +75,9 @@ const config = {
 
   resolve: {
     extensions: [".ts", ".tsx", ".js", "/json"],
+    alias:{
+      'scripts': path.resolve(__dirname, 'src/scripts'),
+    }
   },
 
   plugins: [
