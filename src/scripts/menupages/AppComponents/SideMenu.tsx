@@ -1,9 +1,8 @@
 import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import React, { useState } from "react";
+import { IMenu } from "../types";
 // import { MailOutlined, SettingOutlined } from '@ant-design/icons';
-
-import { IMenu } from "../App";
 
 interface ISideMenu {
     activeKey: string;
@@ -40,17 +39,17 @@ const SideMenu = (props: ISideMenu) => {
                 menuList.map((menu: IMenu) => {
                     if (menu.children) {
                         return (
-                            <SubMenu title={menu.text} key={menu.key} icon={menu.icon}>
+                            <SubMenu title={menu.title} key={menu.key} icon={menu.icon}>
                                 {
                                     // 暂时层级菜单只支持一层
                                     menu.children.map((m: IMenu) => {
-                                        return <Menu.Item key={m.key}>{m.text}</Menu.Item>
+                                        return <Menu.Item key={m.key}>{m.title}</Menu.Item>
                                     })
                                 }
                             </SubMenu>
                         )
                     } else {
-                        return <Menu.Item key={menu.key}>{menu.text}</Menu.Item>
+                        return <Menu.Item key={menu.key}>{menu.title}</Menu.Item>
                     }
                 })
             }
