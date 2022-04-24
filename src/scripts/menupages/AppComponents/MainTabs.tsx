@@ -25,7 +25,7 @@ const MainTabs = (props: IMainTabs) => {
             props.onEdit("remove",{removeKey:targetKey});
         }
     }
-    console.log(panes)
+    
     return (
         <Tabs type="editable-card" hideAdd activeKey={activeKey} onChange={handleTabsChange} onEdit={handleRemoveTabs}>
             {

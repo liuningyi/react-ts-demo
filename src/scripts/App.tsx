@@ -12,7 +12,6 @@ import "./App.less";
 const App = () => {
   const element = useRoutes(routes);
   const navigate = useNavigate();
-
   return (
     <>
       <div style={{display:'flex',justifyContent:'space-around',margin:'20px'}}>

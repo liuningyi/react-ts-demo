@@ -1,3 +1,3 @@
 #project-init
 
-# drawio 文件夹暂时用来存放一些逻辑图
+# scripts/reactIntl react-intl多语言使用

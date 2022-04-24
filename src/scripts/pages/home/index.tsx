@@ -1,56 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
 
-function MyBlob() {
-    const obj = { hello: "world" };
-    const myBlob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+import { useState, useEffect } from "react";
 
-    // 创建blob数据的子集blob
-    const childBlob = myBlob.slice(6, 14, "text/html");
-    console.log(childBlob)
+const promise = (params: any): Promise<any> => {
+  return new Promise((resolve, _reject) => {
+    resolve({ age: 12, name: "柳宁依", message: params.msg });
+  });
+};
+
+function useUser(id: any) {
+  const [useInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    promise({ msg: "我来测试啦" }).then((res) => {
+      setUserInfo(res);
+    });
+  }, [id]);
+  return useInfo;
 }
 
-function myArrayBuffer() {
-    const buffer = new ArrayBuffer(10);
-    const view1 = new DataView(buffer);
-    view1.setInt16(1, 5);
-    view1.setUint8(1, 10);
+export default function index() {
+  const [id, setId] = useState(1);
+  const userInfo = useUser(id);
+  console.log(userInfo);
+  const handleClick = () => {
+    console.log("改变前的id值", id);
+    setId(id + 1);
+  };
+  return (
+    <div>
+      <button onClick={handleClick}>点我改变id值</button>
+    </div>
+  );
 }
-
-function myFileReader(_file: any,callback:any) {
-    const reader = new FileReader();
-    reader.readAsDataURL(_file);
-    reader.onload = () => {
-        console.log(reader.result)
-        callback(reader.result)
-    }
-}
-
-const Home = () => {
-    const [imgUrl, setImgUrl] = useState("");
-    const [ifUrl, setIfUrl] = useState("");
-
-    useEffect(() => {
-        MyBlob();
-        myArrayBuffer();
-    }, []);
-
-    const handleChange = (e: any) => {
-        console.log(e.target.files)
-        const url = URL.createObjectURL(e.target.files[0]);
-        setIfUrl(url);
-        myFileReader(e.target.files[0],(result:any)=>{
-            setImgUrl(result)
-        });
-    }
-
-    return (
-        <>
-            <input id="input" type="file" name="input" multiple onChange={handleChange} />
-            <img src={imgUrl} alt="" style={{ width: '100px', height: '100px' }} />
-            <span style={{ padding: '20px' }}></span>
-            <iframe src={ifUrl} width={500} height={500}></iframe>
-        </>
-    )
-}
-
-export default Home
