@@ -5,7 +5,7 @@
     "strict": true,
     "rootDir": "./src",
     "outDir": "./bundles",
-    "noUnusedLocals": false, // 当有未使用的变量时不会报错
+    "noUnusedLocals": true, // 当有未使用的变量时不会报错
     "noUnusedParameters": true,
     "jsx": "react",
     "sourceMap": true,

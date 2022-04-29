@@ -1,29 +1,57 @@
+import { Table } from "antd";
 import React from "react";
-// import { useNavigate } from "react-router";
-// import { DatePicker } from "antd";
 
-import "./index.less";
+const columns: any = [
+  {
+    title: "Company",
+    children: [
+      {
+        title: "Company Address",
+        dataIndex: "companyAddress",
+        key: "companyAddress",
+        width: 200,
+      },
+      {
+        title: "Company Name",
+        dataIndex: "companyName",
+        key: "companyName",
+      },
+    ],
+  },
+  {
+    title: "Gender",
+    dataIndex: "gender",
+    key: "gender",
+    width: 80,
+    fixed: "right",
+  },
+];
 
-// const Page1 = () => {
-//     const navigate =useNavigate();
-//     return (
-//         <div className="page_1" style={{height:"500px"}}>
-//             我是page1，哈哈哈
-//             <p onClick={()=>{navigate("/")}}>点我回到首页</p>
-//             <DatePicker />
-//         </div>
-//     )
+// const data:any = [];
+// for (let i = 0; i < 100; i++) {
+//   data.push({
+//     key: i,
+//     name: 'John Brown',
+//     age: i + 1,
+//     street: 'Lake Park',
+//     building: 'C',
+//     number: 2035,
+//     companyAddress: 'Lake Street 42',
+//     companyName: 'SoftLake Co',
+//     gender: 'M',
+//   });
 // }
 
-// export default Page1;
+const data: any = [
+  { companyAddress: "Lake Street 42", companyName: "SoftLake Co", gender: "M" },
+];
 
-export default function () {
-  return (
-    <div className="parent">
-      <div className="span-12"></div>
-      <div className="span-7"></div>
-      <div className="span-12"></div>
-      <div className="span-7"></div>
-    </div>
-  );
-}
+export default () => (
+  <Table
+    columns={columns}
+    dataSource={data}
+    bordered
+    size="middle"
+    scroll={{ x: "calc(700px + 50%)", y: 240 }}
+  />
+);

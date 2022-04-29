@@ -2,8 +2,8 @@ import { Divider, Select } from "antd";
 import React, { useState } from "react";
 import { FormattedMessage, IntlProvider, useIntl } from "react-intl";
 
-import EN from "./en";
-import ZH from "./zh";
+import EN from "./locales/en";
+import ZH from "./locales/zh";
 
 import "./App.less";
 

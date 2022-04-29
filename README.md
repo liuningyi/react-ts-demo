@@ -8,3 +8,5 @@ npm install react-i18next i18next --save
 
 # antmobile ant-design-mobile 项目
 # menupages antd-design的menu菜单项目
+
+# pages 路由页面

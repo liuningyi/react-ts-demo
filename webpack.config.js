@@ -16,7 +16,7 @@ const devConfig = {
     allowedHosts: "all",
     // static: [],
     hot: true,
-    port: 9003,
+    port: 3000,
     open: true,
     // proxy:{
     //   "/api":{
