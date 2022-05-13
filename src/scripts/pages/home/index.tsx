@@ -1,5 +1,4 @@
-import { Button, Table } from "antd";
-import { List } from "antd-mobile";
+import { Button } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
