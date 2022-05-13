@@ -8,7 +8,7 @@ import Page3 from "../scripts/pages/page3";
 import QiankunMainTab from "../qiankunMain_tab";
 
 // 在百世中有使用
-import BestCom from "../scripts/baishi/App";
+import BestCom from "../scripts/baishiDemo/App";
 
 const routes: RouteObject[] = [
   { path: "/", element: <Home /> },
